@@ -2,34 +2,35 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Devine qui...</title>
+  <title>Petit quizz pour Morgane</title>
   <style>
     body {
       margin: 0;
       padding: 0;
       font-family: 'Georgia', serif;
-      background: linear-gradient(to right, #fff0f5, #ffe6f0);
+      background: linear-gradient(to right, #1a1a1a, #333);
+      color: #fce4ec;
       overflow: hidden;
     }
 
     .container {
       position: relative;
       z-index: 10;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       text-align: center;
       width: 90%;
       max-width: 600px;
       margin: 100px auto;
-      color: #5a2e3f;
     }
 
     h1 {
       font-size: 2em;
       margin-bottom: 30px;
-      color: #d63384;
+      color: #ffb6c1;
     }
 
     .choices {
@@ -44,18 +45,18 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
-      background-color: #ffb3c6;
-      color: #4b2e2e;
+      background-color: #ff69b4;
+      color: #fff;
       transition: background 0.3s ease;
     }
 
     button:hover {
-      background-color: #ff99b3;
+      background-color: #ff1493;
     }
 
     .final {
       font-size: 1.5em;
-      color: #b30059;
+      color: #ff80ab;
       margin-top: 20px;
     }
 
@@ -82,7 +83,15 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_60f3186c83.mp3?filename=romantic-piano-ambient-112984.mp3" type="audio/mp3">
   </audio>
 
-  <div class="container" id="game">
+  <!-- Page d’intro -->
+  <div class="container" id="intro">
+    <h1>Petit quizz pour toi Morgane 💌</h1>
+    <p>Un petit moment douceur rien que pour toi...</p>
+    <button onclick="startQuiz()">Continuer</button>
+  </div>
+
+  <!-- Quizz romantique -->
+  <div class="container" id="game" style="display: none;">
     <h1 id="question">Devine qui est la femme de ma vie ?</h1>
     <div class="choices">
       <button onclick="nextStep()">Toi</button>
@@ -98,9 +107,15 @@
       "Qui a fait battre mon cœur comme jamais ?"
     ];
 
+    const intro = document.getElementById('intro');
     const gameDiv = document.getElementById('game');
     const questionEl = document.getElementById('question');
     let index = 0;
+
+    function startQuiz() {
+      intro.style.display = "none";
+      gameDiv.style.display = "block";
+    }
 
     function nextStep() {
       index++;
@@ -120,7 +135,7 @@
       location.reload();
     }
 
-    // Générer des cœurs qui tombent
+    // Cœurs qui tombent
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
