@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Petit quizz pour Morgane</title>
   <style>
     body {
@@ -10,7 +11,7 @@
       font-family: 'Georgia', serif;
       background: linear-gradient(to right, #1a1a1a, #333);
       color: #fce4ec;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .container {
@@ -18,30 +19,35 @@
       z-index: 10;
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
-      padding: 40px;
+      padding: 5vw;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       text-align: center;
       width: 90%;
       max-width: 600px;
-      margin: 100px auto;
+      margin: 10vh auto;
     }
 
     h1 {
-      font-size: 2em;
-      margin-bottom: 30px;
+      font-size: 6vw;
+      margin-bottom: 5vh;
       color: #ffb6c1;
+    }
+
+    p {
+      font-size: 4vw;
     }
 
     .choices {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 5vw;
+      margin-top: 4vh;
     }
 
     button {
-      padding: 15px 25px;
-      font-size: 1.2em;
+      padding: 3vh 2vw;
+      font-size: 4.5vw;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -55,7 +61,7 @@
     }
 
     .final {
-      font-size: 1.5em;
+      font-size: 4vw;
       color: #ff80ab;
       margin-top: 20px;
     }
@@ -74,6 +80,13 @@
         transform: translateY(100vh) rotate(360deg);
         opacity: 0;
       }
+    }
+
+    @media (min-width: 600px) {
+      h1 { font-size: 2em; }
+      p { font-size: 1.2em; }
+      button { font-size: 1.1em; }
+      .final { font-size: 1.3em; }
     }
   </style>
 </head>
@@ -95,7 +108,7 @@
     <h1 id="question">Devine qui est la femme de ma vie ?</h1>
     <div class="choices">
       <button onclick="nextStep()">Toi</button>
-      <button onclick="nextStep()">La blonde au yeux bleues qui réponds a ce quizz</button>
+      <button onclick="nextStep()">La blonde aux yeux bleus qui répond à ce quizz</button>
     </div>
   </div>
 
@@ -103,8 +116,8 @@
     const questions = [
       "Avec qui est-ce que je veux partager ma vie.. ?",
       "Qui me rend heureux rien qu'avec sa présence ?",
-      "Qui est la plus belle femme dans tout les univers existant ?",
-      "Qui est actuellement la personne qui me rends le plus heureux ?"
+      "Qui est la plus belle femme dans tous les univers existants ?",
+      "Qui est actuellement la personne qui me rend le plus heureux ?"
     ];
 
     const intro = document.getElementById('intro');
@@ -124,8 +137,8 @@
       } else {
         gameDiv.innerHTML = `
           <h1>Tu as deviné 💖</h1>
-          <p class="final">Oui si t'as pas compris je t'aime tu n'imagines pas a quel point.<br><br>
-          Je t’aime infiniment (même si je fais quelque conneries des fois je suis désolé).</p>
+          <p class="final">Oui si t'as pas compris je t'aime tu n'imagines pas à quel point.<br><br>
+          Je t’aime infiniment (même si je fais quelques conneries parfois, je suis désolé).</p>
           <button onclick="restart()">Rejouer 💫</button>
         `;
       }
@@ -135,7 +148,6 @@
       location.reload();
     }
 
-    // Cœurs qui tombent
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
