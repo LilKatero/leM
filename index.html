@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Devine qui...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to right, #fff0f5, #ffe6f0);
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+      margin: 100px auto;
+      color: #5a2e3f;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #d63384;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #ffb3c6;
+      color: #4b2e2e;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff99b3;
+    }
+
+    .final {
+      font-size: 1.5em;
+      color: #b30059;
+      margin-top: 20px;
+    }
+
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: #ff6b81;
+      font-size: 20px;
+      animation: fall linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Musique douce -->
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_60f3186c83.mp3?filename=romantic-piano-ambient-112984.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="container" id="game">
+    <h1 id="question">Devine qui est la femme de ma vie ?</h1>
+    <div class="choices">
+      <button onclick="nextStep()">Toi</button>
+      <button onclick="nextStep()">TOI</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      "Devine avec qui je veux partager tous mes rêves ?",
+      "Qui me rend heureux rien qu’avec un regard ?",
+      "Qui est la plus belle personne que je connaisse ?",
+      "Qui a fait battre mon cœur comme jamais ?"
+    ];
+
+    const gameDiv = document.getElementById('game');
+    const questionEl = document.getElementById('question');
+    let index = 0;
+
+    function nextStep() {
+      index++;
+      if (index < questions.length) {
+        questionEl.textContent = questions[index];
+      } else {
+        gameDiv.innerHTML = `
+          <h1>Tu as deviné 💖</h1>
+          <p class="final">C’est Toi, et ce sera toujours Toi.<br><br>
+          Je t’aime infiniment.</p>
+          <button onclick="restart()">Rejouer 💫</button>
+        `;
+      }
+    }
+
+    function restart() {
+      location.reload();
+    }
+
+    // Générer des cœurs qui tombent
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+</body>
+</html>
