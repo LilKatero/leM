@@ -95,16 +95,16 @@
     <h1 id="question">Devine qui est la femme de ma vie ?</h1>
     <div class="choices">
       <button onclick="nextStep()">Toi</button>
-      <button onclick="nextStep()">TOI</button>
+      <button onclick="nextStep()">La blonde au yeux bleues qui réponds a ce quizz</button>
     </div>
   </div>
 
   <script>
     const questions = [
-      "Devine avec qui je veux partager tous mes rêves ?",
-      "Qui me rend heureux rien qu’avec un regard ?",
-      "Qui est la plus belle personne que je connaisse ?",
-      "Qui a fait battre mon cœur comme jamais ?"
+      "Avec qui est-ce que je veux partager ma vie.. ?",
+      "Qui me rend heureux rien qu'avec sa présence ?",
+      "Qui est la plus belle femme dans tout les univers existant ?",
+      "Qui est actuellement la personne qui me rends le plus heureux ?"
     ];
 
     const intro = document.getElementById('intro');
@@ -124,8 +124,8 @@
       } else {
         gameDiv.innerHTML = `
           <h1>Tu as deviné 💖</h1>
-          <p class="final">C’est Toi, et ce sera toujours Toi.<br><br>
-          Je t’aime infiniment.</p>
+          <p class="final">Oui si t'as pas compris je t'aime tu n'imagines pas a quel point.<br><br>
+          Je t’aime infiniment (même si je fais quelque conneries des fois je suis désolé).</p>
           <button onclick="restart()">Rejouer 💫</button>
         `;
       }
